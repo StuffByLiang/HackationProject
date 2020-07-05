@@ -143,9 +143,8 @@ function surveyFormSubmit() {
 
   $.post(`/api/${slug}/surveydata`, sendData)
     .done(function(data) {
-      let slug = data.slug;
-      $("#link").text(`${window.location.origin}/${slug}/survey`);
-      $("#link").attr("href", `${window.location.origin}/${slug}/survey`);
+      $("#link").text(`${window.location.origin}/${slug}/itinerary`);
+      $("#link").attr("href", `${window.location.origin}/${slug}/itinerary`);
 
       $("#svg_form_time rect").css("fill", active_color);
       $("#svg_form_time circle").css("fill", active_color);

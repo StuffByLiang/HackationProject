@@ -119,6 +119,7 @@ getPlaceNamesAndID(dataList) {
         for (let j = 0; j < dataList[i].places.length; j++) {
             placesAndID.push({
                 placeID: dataList[i].places[j].place_id, 
+                location: dataList[i].places[j].geometry.location,
                 name: dataList[i].places[j].name,
             });
         }

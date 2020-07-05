@@ -57,8 +57,10 @@
         dayMaxEvents: true, // allow "more" link when too many events
         navLinks: true, // can click day/week names to navigate views
         eventClick: function(info) {
-          if (info.event.url) {
-            window.open(info.event.url, "_blank");
+          console.log(info)
+          if (info.event.extendedProps.urllink) {
+            map.setCenter(info.event.extendedProps.location);
+            // window.open(info.event.extendedProps.urllink, "_blank");
             return false;
           }
         }
@@ -186,7 +188,10 @@
             title: event.name,
             start: moment(day).add(moment.duration(event.start_time).asHours(), 'hours').valueOf(),
             end: moment(day).add(moment.duration(event.end_time).asHours(), 'hours').valueOf(),
-            url: `https://www.google.com/maps/search/?api=1&query=search&query_place_id=${event.placeID}`
+            urllink: `https://www.google.com/maps/search/?api=1&query=search&query_place_id=${event.placeID}`,
+            placeID: event.placeID,
+            location: event.location,
+            url: "#"
         })
         }
       }
@@ -205,13 +210,6 @@
       // }
     }
 
-    function eventClick(info) {
-      info.jsEvent.preventDefault();
-
-      if (info.event.url) {
-        window.open(info.event.url);
-      }
-    }
 
 //     var calendar = new Calendar(calendarEl, {
 //   events: [
@@ -223,11 +221,11 @@
 //   ]
 // })
     function initMap() {
-      var map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 12,
+      window.map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 16,
         center: {
-          lat: -28.643387,
-          lng: 153.612224
+          lat: trip[0].events[0].location.lat,
+          lng: trip[0].events[0].location.lng
         },
         mapTypeControl: true,
         mapTypeControlOptions: {

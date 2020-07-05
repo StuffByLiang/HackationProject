@@ -28,6 +28,7 @@ class Aggregator {
         //     activities: ["landmark", "swim"]
         // }
     constructor() {
+        this.created = false;
         this.itinerary = null;
         this.hostData = {}; 
         this.location = this.hostData.location; 
@@ -146,7 +147,8 @@ addSurveyData(surveyData) {
         this.surveyData.push(surveyData);
         console.log("adding survey data from survey");
     }
-    if(this.surveyData.length == groupSize) {
+    if(this.surveyData.length == groupSize && !this.created) {
+        this.created = true;
         this.createItinerary(); 
         console.log("creating itinerary");
     }

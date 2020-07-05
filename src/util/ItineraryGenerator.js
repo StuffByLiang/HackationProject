@@ -90,43 +90,50 @@ class ItineraryGenerator {
                 name: this.selectRestaurant(),  //selects a restaurant name and placeID object
                 placeID: this.currentPlaceID, 
                 start_time: "8:00",
-                end_time: "9:00"                    
+                end_time: "9:00",
+                location: this.location                 
             }, 
             {
                 name: this.selectActivity(),
                 placeID: this.currentPlaceID,
                 start_time: "9:00",
-                end_time: "11:00" 
+                end_time: "11:00" ,
+                location: this.location   
             },
             {
                 name: this.selectRestaurant(),
                 placeID: this.currentPlaceID,
                 start_time: "11:00",
-                end_time: "12:00" 
+                end_time: "12:00" ,
+                location: this.location   
             },
             {
                 name: this.selectActivity(),
                 placeID: this.currentPlaceID,
                 start_time: "12:00",
-                end_time: "14:00" 
+                end_time: "14:00" ,
+                location: this.location   
             },
             {
                 name: this.selectActivity(),
                 placeID: this.currentPlaceID,
                 start_time: "14:00",
-                end_time: "16:00" 
+                end_time: "16:00" ,
+                location: this.location   
             },
             {
                 name: this.selectRestaurant(),
                 placeID: this.currentPlaceID,
                 start_time: "16:00",
-                end_time: "17:00" 
+                end_time: "17:00" ,
+                location: this.location   
             },
             {
                 name: "Relax and enjoy the rest of your evening! We recommend exploring the city, experiencing the local cultures, and spending time with friends and family!",
                 placeID: this.currentPlaceID, 
                 start_time: '17:00',
-                end_time:   '22:00'
+                end_time:   '22:00',
+                location: this.location   
             }]
         }
         return this.trip.push(day);
@@ -149,6 +156,7 @@ class ItineraryGenerator {
         const randomRestaurant = this.restaurantNamesAndIDs[Math.floor(Math.random() * this.restaurantNamesAndIDs.length)];
         // console.log(this.restaurantNamesAndIDs);
         this.currentPlaceID = randomRestaurant.placeID;  
+        this.location = randomRestaurant.location;
         const index = this.restaurantNamesAndIDs.indexOf(randomRestaurant); 
         if (index > -1) {
             this.restaurantNamesAndIDs.splice(index, 1); 
@@ -168,6 +176,7 @@ class ItineraryGenerator {
 
         const randomActivity = this.activityNamesAndIDs[Math.floor(Math.random() * this.activityNamesAndIDs.length)];
         this.currentPlaceID = randomActivity.placeID; 
+        this.location = randomActivity.location;
         const index = this.activityNamesAndIDs.indexOf(randomActivity); 
         if(index > -1) {
             this.activityNamesAndIDs.splice(index, 1); 
